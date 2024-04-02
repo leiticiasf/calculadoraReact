@@ -2,7 +2,6 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-
   const [hi, setHi] = useState();
   const [mi, setMi] = useState();
   const [hf, setHf] = useState();
@@ -10,30 +9,29 @@ function App() {
   const [resultado, setResultado] = useState("Resultado");
 
   const soma = () => {
-    let somaHora = Number(hi.value) + Number(hf.value);
-    let somaMin = Number(mi.value) + Number(mf.value);
+    let somaHora = Number(hi) + Number(hf);
+    let somaMin= Number(mi) + Number(mf);
+
     while (somaMin > 59){
         somaMin -=60;
         somaHora ++;
     }
 
-    setResultado (somaHora + ":" + somaMin);
+    setResultado (`${somaHora} : ${somaMin}`);
 }
   
 const sub = () => {
-    let momentoInicial = hi.value*60 + Number(mi.value);
-    let momentoFinal = hf.value*60 + Number(mf.value);
+    let momentoInicial = hi * 60 + Number(mi);
+    let momentoFinal = hf*60 + Number(mf);
+    let resultadoMinuto = Math.abs(momentoInicial - momentoFinal);
     let resultadoHora = 0;
-    let resultadoMinuto = momentoInicial - momentoFinal;
-    if(resultadoMinuto < 0){
-            resultadoMinuto *= -1;
-    }
+   
     while(resultadoMinuto > 59){
+        resultadoHora++;
         resultadoMinuto -= 60;
-        resultadoHora ++;
     }
   
-    setResultado (resultadoHora+ ":" +resultadoMinuto);
+    setResultado (`${resultadoHora} : ${resultadoMinuto}`);
   }
 
   return (
@@ -62,8 +60,8 @@ const sub = () => {
          placeholder="Minuto Final"/> &nbsp; <br/><br/>
 
 
-        <button onclick="soma()">Soma</button>&nbsp;&nbsp;&nbsp;&nbsp;
-        <button onclick="sub()">Diferença</button>
+        <button onClick={soma}>Soma</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button onClick={sub}>Diferença</button>
         <h3 id="resultado">{ resultado}</h3>
     </div>
     </>

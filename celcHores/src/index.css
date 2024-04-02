@@ -1,5 +1,5 @@
 body {
-  background-image: url(red.jpg);
+  background-image: url(red.gif);
   background-size: 100%;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
@@ -45,4 +45,8 @@ button{
 button:hover{
   background-color: rgb(37, 1, 1);
   border-color: rgb(255, 86, 86);
+}
+#resultado{
+  color: #660202;
+  font-size: 30px;
 }
